@@ -17,7 +17,7 @@ A running log of my architectural decisions, as I build out this app.
 
 - [x] Create an initial mock API
 
-* Initial implementation in (./api/index.js)[./api/index.js]
+* Initial implementation in [../api/index.js](../api/index.js)
 * Initially, I see a simple API that just returns the data for the next X runs
 * However, I'd like this data to be in JSON format to be easily ingestible by the React frontend
 * Using a simply node packages (csvtojson) I've merged the data from `clubs.csv` and `weekly.csv` into one endpoint, such that the `club` data is a child of the a given run
@@ -42,6 +42,6 @@ A running log of my architectural decisions, as I build out this app.
 - [ ] Figure out how to show the next X runs based on a given time
 
   - Hard than it seems -- My data has a given Day and Time, but translating that into a JavaScript `Date()` is a not so straightforward
-  - As such, I've written an initial mockup of a possible solution in `date.js`
+  - As such, I've written an initial mockup of a possible solution in [../api/date.js](../api/date.js)
 
 - [ ] Add `jest` to test out the solution in `date.js`
