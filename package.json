@@ -1,0 +1,19 @@
+{
+  "name": "nextgroup.run",
+  "version": "0.1.0",
+  "description": "A simple webapp to the next available runs in a given area",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skladany/nextgroup.run.git"
+  },
+  "author": "steve@skladany.net",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skladany/nextgroup.run/issues"
+  },
+  "homepage": "https://github.com/skladany/nextgroup.run#readme"
+}
