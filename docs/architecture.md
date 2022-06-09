@@ -37,11 +37,19 @@ A running log of my architectural decisions, as I build out this app.
 
 * I started this log to better track my architectural decisions
 
+# 2022-06-09
+
+- [x] Figure out how to show the next X runs based on a given time
+
+  - Harder than it seems -- My data has a given Day and Time, but translating that into a JavaScript `Date()` is a not so straightforward
+  - As such, I've written an initial mockup of a possible solution in [../api/weekday-to-date.js](../api/weekday-to-date.js)
+
+- [x] Add **Jest** to test out the solution in `date.js`
+
+  - It's become clear that testing out the `weekday-to-date.js` with CONSTANT variables is tedious and error-prone -- I should be using unit testing!
+  - Installed **Jest**, easy. ...but then quickly realized **Jest** does not yet support es6 modules! Solved this with a quick search on [stackoverflow](https://stackoverflow.com/a/59481773/1940013) with the help of **Babel**
+
 # TODO
 
-- [ ] Figure out how to show the next X runs based on a given time
-
-  - Hard than it seems -- My data has a given Day and Time, but translating that into a JavaScript `Date()` is a not so straightforward
-  - As such, I've written an initial mockup of a possible solution in [../api/date.js](../api/date.js)
-
-- [ ] Add `jest` to test out the solution in `date.js`
+- [ ] Actually write some useful **Jest** tests and finish up `weekday-to-date.js` helper function
+- [ ] Add typescript

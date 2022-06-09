@@ -4,11 +4,14 @@
   "description": "A simple webapp to the next available runs in a given area",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "csvtojson": "^2.0.10"
+  },
+  "devDependencies": {
+    "jest": "^28.1.1"
   }
 }
