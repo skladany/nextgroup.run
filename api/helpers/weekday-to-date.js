@@ -8,11 +8,7 @@
  */
 const timeStringToArray = (time) => {
   // am or pm?
-  const increment = time.toLowerCase().search("pm") ? 12 : 0;
-  console.log(increment);
-
-  // @todo -- set up testing to figure this out // for coding this in general?
-  // why is AM not AM?
+  const increment = time.toLowerCase().search("pm") > 0 ? 12 : 0;
 
   // Remove am/pm
   // split via ":"
