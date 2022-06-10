@@ -1,31 +1,33 @@
-// Find time to Next Wed Strider Run
-// We know it's always on Wed at 6:30pm
-const WEEKDAY = "Wednesday";
-const TIME = "6:35AM";
+/**
+ * Convert human readable time to an array of int values,
+ * suitable for use in Date.prototype.setHours()
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setHours
+ *
+ * @param {string} time - In human readable format, e.g., "6:35AM"
+ * @return {array}  - Returns time in int array of [hours, minutes, seconds, milliseconds]
+ */
+const timeStringToArray = (time) => {
+  // am or pm?
+  const increment = time.toLowerCase().search("pm") ? 12 : 0;
+  console.log(increment);
 
-const weekdayToDate = () => {
-  // Convert TIME to hours array
-  const hours = (time) => {
-    // am or pm?
-    const increment = time.toLowerCase().search("pm") ? 12 : 0;
-    console.log(increment);
+  // @todo -- set up testing to figure this out // for coding this in general?
+  // why is AM not AM?
 
-    // @todo -- set up testing to figure this out // for coding this in general?
-    // why is AM not AM?
+  // Remove am/pm
+  // split via ":"
+  // convert all to ints
+  const arr = time
+    .toLowerCase()
+    .replace("pm", "")
+    .replace("am", "")
+    .split(":")
+    .map((a) => parseInt(a));
 
-    // Remove am/pm
-    // split via ":"
-    // convert all to ints
-    const arr = time
-      .toLowerCase()
-      .replace("pm", "")
-      .replace("am", "")
-      .split(":")
-      .map((a) => parseInt(a));
+  return [arr[0] + increment, ...arr.slice(1), 0, 0];
+};
 
-    return [arr[0] + increment, ...arr.slice(1), 0, 0];
-  };
-
+const weekdayToDate = ({ weekday, time, now = new Date() }) => {
   const daysOfTheWeek = {
     Sunday: 0,
     Monday: 1,
@@ -36,10 +38,7 @@ const weekdayToDate = () => {
     Saturday: 6,
   };
 
-  // Get Date Now
-  const now = new Date();
-
-  // console.log({ now });
+  console.log({ now });
 
   // Create new Date based on now
   const nextRun = now;
@@ -48,7 +47,7 @@ const weekdayToDate = () => {
   nextRun.setDate(1);
 
   // Set to proper start time
-  nextRun.setHours(...hours(TIME));
+  nextRun.setHours(...hours(time));
 
   return nextRun;
 
@@ -64,4 +63,4 @@ const weekdayToDate = () => {
   // .toLocaleString("en-US", { timeZone: "America/New_York", });
 };
 
-export default weekdayToDate;
+export { timeStringToArray, weekdayToDate };
