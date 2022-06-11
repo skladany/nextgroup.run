@@ -8,19 +8,32 @@
  */
 const timeStringToArray = (time) => {
   // am or pm?
-  const increment = time.toLowerCase().search("pm") > 0 ? 12 : 0;
+  const isPM = time.toLowerCase().search("pm") > 0;
 
   // Remove am/pm
   // split via ":"
   // convert all to ints
-  const arr = time
+  let [hours, minutes] = time
     .toLowerCase()
     .replace("pm", "")
     .replace("am", "")
     .split(":")
     .map((a) => parseInt(a));
 
-  return [arr[0] + increment, ...arr.slice(1), 0, 0];
+  // Possibly convert hours to 24 hour clock
+  if (isPM && hours !== 12) {
+    hours += 12;
+  } else if (!isPM && hours === 12) {
+    // Check for Midnight edge case
+    hours = 0;
+  }
+
+  // Throw errors for invalid times
+  if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
+    throw new Error("Invalid time");
+  }
+
+  return [hours, minutes, 0, 0];
 };
 
 const weekdayToDate = ({ weekday, time, now = new Date() }) => {
