@@ -38,31 +38,43 @@ const timeStringToArray = (time) => {
 
 const weekdayToDate = ({ weekday, time, now = new Date() }) => {
   const daysOfTheWeek = {
-    Sunday: 0,
-    Monday: 1,
-    Tuesday: 2,
-    Wednesday: 3,
-    Thursday: 4,
-    Friday: 5,
-    Saturday: 6,
+    sunday: 0,
+    monday: 1,
+    tuesday: 2,
+    wednesday: 3,
+    thursday: 4,
+    friday: 5,
+    saturday: 6,
   };
 
-  console.log({ now });
+  // Get weekday as integer
+  const runDayOfWeek = daysOfTheWeek[weekday.toLowerCase()];
+
+  // Verify bounds
+  if (runDayOfWeek == null || runDayOfWeek < 0 || runDayOfWeek > 6) {
+    throw new Error("Invalid data");
+  }
 
   // Create new Date based on now
   const nextRun = now;
 
-  // Set day to 1st of the month
-  nextRun.setDate(1);
+  // Check day of the week matches Wed
+  const currentDayOfWeek = nextRun.getDay();
+  if (currentDayOfWeek !== runDayOfWeek) {
+    // Figure out how many days until
+    // If negative, it's next week, so add 7
+    let daysUntil = runDayOfWeek - currentDayOfWeek;
+    if (daysUntil < 0) daysUntil += 7;
+
+    // Set to the new date
+    nextRun.setDate(now.getDate() + daysUntil);
+  }
 
   // Set to proper start time
-  nextRun.setHours(...hours(time));
+  nextRun.setHours(...timeStringToArray(time));
 
   return nextRun;
 
-  // Check day of the week matches Wed
-
-  // If not, increment until it does
   // Verify Date is after Now
   // If not, add 7 to the date until it is
 
