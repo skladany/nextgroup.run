@@ -66,8 +66,11 @@ A running log of my architectural decisions, as I build out this app.
 
 # 2022-06-13
 
-- [ ] Continues tests for `weekdayToDate`
+- [x] Continues tests for `weekdayToDate`
+- [x] Add TypeScript
+  - Followed the instructions from [here](https://www.digitalocean.com/community/tutorials/typescript-new-project) which also recommend setting up Google TypeScript Linter
 
 # TODO
 
-- [ ] Add typescript
+- [ ] Figure out TypeScript dev setup
+- [ ] Add types to [../api/weekday-to-date.js](../api/weekday-to-date.js)
