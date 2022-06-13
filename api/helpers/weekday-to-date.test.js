@@ -58,8 +58,8 @@ describe("Weekday to Date module", () => {
     it("Friday 10:30AM (today)", () => {
       expect(
         weekdayToDate({
-          weekday: "Saturday",
-          time: "8:00AM",
+          weekday: "Friday",
+          time: "10:30AM",
           now: NOW,
         }).toString()
       ).toBe("Fri Jun 10 2022 10:30:00 GMT-0400 (Eastern Daylight Time)");

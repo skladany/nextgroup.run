@@ -36,6 +36,14 @@ const timeStringToArray = (time) => {
   return [hours, minutes, 0, 0];
 };
 
+/**
+ * Convert human readable Day & Time to Date object based on the current time
+ *
+ * @param {string} weekday - In human readable format, e.g., "Friday"
+ * @param {string} time - In human readable format, e.g., "6:35AM"
+ * @param {Date} [now] - Optional Date object of the current time. Used for unit testing.
+ * @return {Date}  - Returns time in Date object format
+ */
 const weekdayToDate = ({ weekday, time, now = new Date() }) => {
   const daysOfTheWeek = {
     sunday: 0,
@@ -74,14 +82,6 @@ const weekdayToDate = ({ weekday, time, now = new Date() }) => {
   nextRun.setHours(...timeStringToArray(time));
 
   return nextRun;
-
-  // Verify Date is after Now
-  // If not, add 7 to the date until it is
-
-  // console.log(dayOfWeek);
-  // expected output: 2
-
-  // .toLocaleString("en-US", { timeZone: "America/New_York", });
 };
 
 export { timeStringToArray, weekdayToDate };
