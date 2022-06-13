@@ -49,7 +49,25 @@ A running log of my architectural decisions, as I build out this app.
   - It's become clear that testing out the `weekday-to-date.js` with CONSTANT variables is tedious and error-prone -- I should be using unit testing!
   - Installed **Jest**, easy. ...but then quickly realized **Jest** does not yet support es6 modules! Solved this with a quick search on [stackoverflow](https://stackoverflow.com/a/59481773/1940013) with the help of **Babel**
 
+# 2022-06-10
+
+- [x] Actually write some useful **Jest** tests and finish up `weekday-to-date.js` helper function
+  - I see the benefit of unit testing! I thought I that all the possible edge cases then quickly discovered
+    more I had not solved for after writing tests for the `timeStringToArray` function
+
+# 2022-06-11
+
+- [x] Added lots of tests for `timeStringToArray`!
+
+# 2022-06-12
+
+- [x] Writing tests for `weekdayToDate`
+  - TDD really is great. I'm finding errors I never would have expected in my code, in a much more systematic why then if I were simply manually testing cases and using `console.log`
+
+# 2022-06-13
+
+- [ ] Continues tests for `weekdayToDate`
+
 # TODO
 
-- [ ] Actually write some useful **Jest** tests and finish up `weekday-to-date.js` helper function
 - [ ] Add typescript
