@@ -1,4 +1,7 @@
-import {timeStringToArray, weekdayToDate} from './weekday-to-date.js';
+import {
+  timeStringToArray,
+  weekdayToDate,
+} from '../../build/src/helpers/weekday-to-date.js';
 
 describe('Weekday to Date module', () => {
   describe('Time: String to Array function', () => {

@@ -1,24 +1,30 @@
+import {WeekdayToDateSettings} from '../types';
+import {DAYS_OF_THE_WEEK} from '../constants';
+
 /**
  * Convert human readable time to an array of int values,
  * suitable for use in Date.prototype.setHours()
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setHours
  *
- * @param {string} time - In human readable format, e.g., "6:35AM"
- * @return {array}  - Returns time in int array of [hours, minutes, seconds, milliseconds]
+ * @param time - In human readable format, e.g., "6:35AM"
+ * @return - Returns time in int array of [hours, minutes, seconds, milliseconds]
  */
-const timeStringToArray = time => {
+const timeStringToArray = (time: string): [number, number, number, number] => {
   // am or pm?
-  const isPM = time.toLowerCase().search('pm') > 0;
+  const isPM: boolean = time.toLowerCase().search('pm') > 0;
 
   // Remove am/pm
   // split via ":"
   // convert all to ints
-  let [hours, minutes] = time
+  const timeParts: number[] = time
     .toLowerCase()
     .replace('pm', '')
     .replace('am', '')
     .split(':')
     .map(a => parseInt(a));
+
+  let hours: number = timeParts[0];
+  const minutes: number = timeParts[1];
 
   // Possibly convert hours to 24 hour clock
   if (isPM && hours !== 12) {
@@ -39,27 +45,27 @@ const timeStringToArray = time => {
 /**
  * Convert human readable Day & Time to Date object based on the current time
  *
- * @param {string} weekday - In human readable format, e.g., "Friday"
- * @param {string} time - In human readable format, e.g., "6:35AM"
- * @param {Date} [now] - Optional Date object of the current time. Used for unit testing.
- * @return {Date}  - Returns time in Date object format
+ * @param weekday - In human readable format, e.g., "Friday"
+ * @param time - In human readable format, e.g., "6:35AM"
+ * @param [now] - Optional Date object of the current time. Used for unit testing.
+ * @return - Returns time in Date object format
  */
-const weekdayToDate = ({weekday, time, now = new Date()}) => {
-  const daysOfTheWeek = {
-    sunday: 0,
-    monday: 1,
-    tuesday: 2,
-    wednesday: 3,
-    thursday: 4,
-    friday: 5,
-    saturday: 6,
-  };
 
+const weekdayToDate = ({
+  weekday,
+  time,
+  now = new Date(),
+}: WeekdayToDateSettings): Date => {
   // Get weekday as integer
-  const runDayOfWeek = daysOfTheWeek[weekday.toLowerCase()];
+  const runDayOfWeek = DAYS_OF_THE_WEEK[weekday.toLowerCase()];
 
   // Verify bounds
-  if (runDayOfWeek == null || runDayOfWeek < 0 || runDayOfWeek > 6) {
+  if (
+    runDayOfWeek === null ||
+    runDayOfWeek === undefined ||
+    runDayOfWeek < 0 ||
+    runDayOfWeek > 6
+  ) {
     throw new Error('Invalid data');
   }
 
