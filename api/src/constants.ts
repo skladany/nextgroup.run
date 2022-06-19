@@ -1,4 +1,4 @@
-import {StringToNumberMap} from './types';
+import { StringToNumberMap } from './types'
 
 const DAYS_OF_THE_WEEK: StringToNumberMap = {
   sunday: 0,
@@ -8,6 +8,6 @@ const DAYS_OF_THE_WEEK: StringToNumberMap = {
   thursday: 4,
   friday: 5,
   saturday: 6,
-};
+}
 
-export {DAYS_OF_THE_WEEK};
+export { DAYS_OF_THE_WEEK }
