@@ -12,7 +12,9 @@ A running log of my architectural decisions, as I build out this app.
 
 # 2022-06-20
 
-- [ ] Figure out how to set up [express w/ typescript](https://blog.logrocket.com/how-to-set-up-node-typescript-express/)
+- [x] Figure out how to set up [express w/ typescript](https://blog.logrocket.com/how-to-set-up-node-typescript-express/)
+  - That was an _excellent_ guide and got me up and running with `express` & `typescript` fast!
+  - One thing to note: Using `typescript` means all the dev dependencies that are directly used in my code now require types to also be imported: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 # 2022-06-19
 
