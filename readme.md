@@ -10,74 +10,74 @@ A running log of my architectural decisions, as I build out this app.
 
 - [ ] Finishing creating main endpoint that shows the next 10 runs from now
 
-# 2022-06-22
+## 2022-06-22
 
 - [x] Continuing with endpoint code; Still struggling with typing properly...
 
-# 2022-06-21
+## 2022-06-21
 
 - [x] Working on endpoint code; Adding types
   - `typescript` is ...a larger learning curve than I expected. So far it just seems to be slowing me down, but hopefully I find it worthwhile in the _long run_ (get it??)
 
-# 2022-06-20
+## 2022-06-20
 
 - [x] Figure out how to set up [express w/ typescript](https://blog.logrocket.com/how-to-set-up-node-typescript-express/)
   - That was an _excellent_ guide and got me up and running with `express` & `typescript` fast!
   - One thing to note: Using `typescript` means all the dev dependencies that are directly used in my code now require types to also be imported: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-# 2022-06-19
+## 2022-06-19
 
 - [x] More configuration, getting prettier to work how I want
 
-# 2022-06-18
+## 2022-06-18
 
 - [x] (Actually) to figure out best way to use `jest` with `TypeScript`
   - So far ...I'm finding **TypeScript** to be a _lot_ of extra work for not necessarily much gain.
   - **Jest** is proving to be very useful -- but adding **TypeScript** seems a bit repetitive, as the _type_ of errors that **TypeScript** will catch seem to be likely caught by `jest` tests.
   - However, now that the configuration is out of the way hopefully writing new code with **TypeScript** will prove to be more easier and less error prone. We'll see!
 
-# 2022-06-17
+## 2022-06-17
 
 - [x] (Try) to figure out best way to use `jest` with `TypeScript`
 
-# 2022-06-16
+## 2022-06-16
 
 - [x] Continue adding types to [../api/weekday-to-date.js](../api/weekday-to-date.js)
 - [x] Figure out/ understand `type` better and how to initialize them;
 - [x] Move `types` and `CONSTANTS` to their own files
 
-# 2022-06-15
+## 2022-06-15
 
 - [x] Continue adding types to [../api/weekday-to-date.js](../api/weekday-to-date.js)
   - Adding types to destructured object parameters is quite confusing, but [this blog post](https://mariusschulz.com/blog/typing-destructured-object-parameters-in-typescript) helped to clear things up.
 
-# 2022-06-14
+## 2022-06-14
 
 - [x] Figure out TypeScript dev setup
 - [x] Start adding types to [../api/weekday-to-date.js](../api/weekday-to-date.js)
 
-# 2022-06-13
+## 2022-06-13
 
 - [x] Continues tests for `weekdayToDate`
 - [x] Add TypeScript
   - Followed the instructions from [here](https://www.digitalocean.com/community/tutorials/typescript-new-project) which also recommend setting up Google TypeScript Linter
 
-# 2022-06-12
+## 2022-06-12
 
 - [x] Writing tests for `weekdayToDate`
   - TDD really is great. I'm finding errors I never would have expected in my code, in a much more systematic why then if I were simply manually testing cases and using `console.log`
 
-# 2022-06-11
+## 2022-06-11
 
 - [x] Added lots of tests for `timeStringToArray`!
 
-# 2022-06-10
+## 2022-06-10
 
 - [x] Actually write some useful **Jest** tests and finish up `weekday-to-date.js` helper function
   - I see the benefit of unit testing! I thought I that all the possible edge cases then quickly discovered
     more I had not solved for after writing tests for the `timeStringToArray` function
 
-# 2022-06-09
+## 2022-06-09
 
 - [x] Figure out how to show the next X runs based on a given time
 
@@ -89,7 +89,7 @@ A running log of my architectural decisions, as I build out this app.
   - It's become clear that testing out the `weekday-to-date.js` with CONSTANT variables is tedious and error-prone -- I should be using unit testing!
   - Installed **Jest**, easy. ...but then quickly realized **Jest** does not yet support es6 modules! Solved this with a quick search on [stackoverflow](https://stackoverflow.com/a/59481773/1940013) with the help of **Babel**
 
-# 2022-06-08
+## 2022-06-08
 
 - [x] Start a _running_ log (get it?)
 
