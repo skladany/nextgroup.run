@@ -9,4 +9,15 @@ interface StringToNumberMap {
   [index: string]: number
 }
 
-export { WeekdayToDateSettings, StringToNumberMap }
+interface Clubs {
+  id: string
+  name: string
+  abbreviation: string
+  branch: string
+  state: string
+  website: string
+  fb: string
+  instagram: string
+}
+
+export { WeekdayToDateSettings, StringToNumberMap, Clubs }

@@ -10,6 +10,11 @@ A running log of my architectural decisions, as I build out this app.
 
 - [ ] Finishing creating main endpoint that shows the next 10 runs from now
 
+# 2022-06-21
+
+- [x] Working on endpoint code; Adding types
+  - `typescript` is ...a larger learning curve than I expected. So far it just seems to be slowing me down, but hopefully I find it worthwhile in the _long run_ (get it??)
+
 # 2022-06-20
 
 - [x] Figure out how to set up [express w/ typescript](https://blog.logrocket.com/how-to-set-up-node-typescript-express/)
