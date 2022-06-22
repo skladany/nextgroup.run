@@ -10,6 +10,10 @@ A running log of my architectural decisions, as I build out this app.
 
 - [ ] Finishing creating main endpoint that shows the next 10 runs from now
 
+# 2022-06-22
+
+- [x] Continuing with endpoint code; Still struggling with typing properly...
+
 # 2022-06-21
 
 - [x] Working on endpoint code; Adding types

@@ -9,7 +9,7 @@ interface StringToNumberMap {
   [index: string]: number
 }
 
-interface Clubs {
+type Clubs = {
   id: string
   name: string
   abbreviation: string
@@ -20,4 +20,8 @@ interface Clubs {
   instagram: string
 }
 
-export { WeekdayToDateSettings, StringToNumberMap, Clubs }
+interface ClubsMap {
+  [index: number]: Clubs
+}
+
+export { WeekdayToDateSettings, StringToNumberMap, Clubs, ClubsMap }
