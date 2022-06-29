@@ -1,4 +1,5 @@
-import { ClubsMap } from './types'
+import { Clubs, ClubsMap } from './types'
+import { weekdayToDate } from './helpers/weekday-to-date'
 import express, { Express, Request, Response, NextFunction } from 'express'
 import dotenv from 'dotenv'
 import csv from 'csvtojson'
@@ -34,37 +35,44 @@ app.get('/runs', async (req: Request, res: Response) => {
 
   // Injest data.csv files
   const clubsCSV = `data/${city}/clubs.csv`
-  // const weeklyCSV = `data/${CITY}/weekly.csv`
+  const weeklyCSV = `data/${city}/weekly.csv`
 
   // Parse clubs data
-  const clubs: string[] = await csv().fromFile(clubsCSV)
-  console.log(clubs)
+  const clubs: Clubs[] = await csv().fromFile(clubsCSV)
 
   // Create map of data
   const clubsData: ClubsMap = {}
-  // clubs.forEach((data: string) => (clubsData[parseInt(data.id)] = data))
-  // // Helpers methods to parse the data
-  // const toBoolean = (item: string) => !!parseInt(item)
-  // const toArray = (item: string) => item.split(',').map(n => parseFloat(n))
-  // const toClub = (id: string) => clubsData[id]
-  // // Parse the weekly club data
-  // const weekly = await csv({
-  //   colParser: {
-  //     active: item => toBoolean(item),
-  //     club: item => toClub(item),
-  //     weekly: item => toBoolean(item),
-  //     coords: item => toArray(item),
-  //     distance: item => toArray(item),
-  //     fixed_route: item => toBoolean(item),
-  //   },
-  // }).fromFile(weeklyCSV)
-  // console.log(weekly)
-  // ouput single endpoint of the next 10 runs from now
-  // Date may not be enough for this, use moment or another package?
-  // console.log({ now })
-  // console.log(new Date('Saturday 8am'))
+  clubs.forEach((data: Clubs) => (clubsData[data.id] = data as Clubs))
 
-  // res.send(clubs)
+  // Helpers methods to parse the data; Possibly move these to another func
+  const toBoolean = (item: string) => !!parseInt(item)
+  const toArray = (item: string) => item.split(',').map(n => parseFloat(n))
+  const toClub = (id: string) => clubsData[parseInt(id)]
+
+  // Parse the weekly club data
+  const weekly = await csv({
+    colParser: {
+      active: item => toBoolean(item),
+      club: item => toClub(item),
+      weekly: item => toBoolean(item),
+      coords: item => toArray(item),
+      distance: item => toArray(item),
+      fixed_route: item => toBoolean(item),
+    },
+  }).fromFile(weeklyCSV)
+
+  // 1. Filter by active runs
+  // 2. Add `next_run` data
+  // 3. Sort runs
+  const nextRun: object = weekly
+    .filter(run => run.active === true)
+    .map(run => {
+      run.next_run = weekdayToDate({ weekday: run.day, time: run.time })
+      return run
+    })
+    .sort((a, b) => a.next_run - b.next_run)
+
+  res.send(nextRun)
 })
 
 app.listen(port, () => {

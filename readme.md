@@ -8,7 +8,16 @@ A running log of my architectural decisions, as I build out this app.
 
 # TODO
 
-- [ ] Finishing creating main endpoint that shows the next 10 runs from now
+- [ ] Extend endpoint to "repeat" runs if necessary to get to 10 runs
+
+## 2022-06-28
+
+- [x] Adding derived `nex_run` to endpoint
+- [x] Finishing creating main endpoint that shows the next runs from now
+
+## 2022-06-23
+
+- [x] Finally solved the typing of the forEach() loop! Pro-tip: Actually read the error messages and try to _understand_ them...
 
 ## 2022-06-22
 

@@ -10,7 +10,7 @@ interface StringToNumberMap {
 }
 
 type Clubs = {
-  id: string
+  id: number
   name: string
   abbreviation: string
   branch: string
