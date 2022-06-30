@@ -9,10 +9,30 @@ A running log of my architectural decisions, as I build out this app.
 # TODO
 
 - [ ] Extend endpoint to "repeat" runs if necessary to get to 10 runs
+- [ ] Merge in one-off runs
+
+## 2022-06-30
+
+- Hmm. So I think keeping a `weekly`, `monthly`, `yearly` and `singuler` CSV files (table) make the most sense, as trying to merge them all with the varying special cases was turning complicated, fast.
+- But ...how do I manage when runs are cancelled? For instance, the Monday July 4th run is cancelled, but that shows up in the weekly CSV
+- How do I deal with weekly runs that are special? Like, going to a rooftop instead of stopping at the usual spot?
+- One possibility:
+
+  - "Cron" jobs. At a set interval, a job runs on the repeating lists, that creates the actual one-off entries into the main CSV file.
+  - Then that one CSV file becomes the source of truth, making that endpoint much "dumber" -- you'd just need to query on the current date and, that's basically it.
+  - However, if I need to create entries then use a CSV file is going to be tough. I think this concept is too complicated and will require a robust database.
+  - ...but a database means this will cost some amount of real money now, so, not to be taken lightly.
+
+- [ ] Adjust `weekly` runs endpoint to accept other cadences
+
+## 2022-06-29
+
+- [x] Create CSV for one-off runs
+- [x] Change `weekly` runs CSV to `repeating`
 
 ## 2022-06-28
 
-- [x] Adding derived `nex_run` to endpoint
+- [x] Adding derived `next_run` to endpoint
 - [x] Finishing creating main endpoint that shows the next runs from now
 
 ## 2022-06-23
