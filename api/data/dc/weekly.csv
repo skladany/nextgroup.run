@@ -1,5 +1,5 @@
-active,day,time,alt_time,club_id,title,startpoint,google_map,coords,type,distance,fixed_route,route_link,notes
-1,Wednesday,6:30 PM,,0,,Shaw's Tavern,https://goo.gl/maps/A5fwA2J39nKKVW4M8,"38.91531257905251, -77.01967456443468",Road,4,0,,
-1,Monday,6:30 PM,,1,,Bikeshare Station - Smithsonian Metro,https://goo.gl/maps/a5ja7coRuQpMEw3H8,"38.888953545709654, -77.02869936442738",Road,"4,8",0,,
-0,Thursday,6:30 PM,,1,,Bikeshare Station - Smithsonian Metro,https://goo.gl/maps/a5ja7coRuQpMEw3H8,"38.888953545709654, -77.02869936442738",Road,"4,8",0,,
-1,Saturday,8:00 AM,9:00 AM,2,,Statue in center of Dupont Circle,https://goo.gl/maps/mQHLcYF7wKyLF1Mt5,"38.90974454736303, -77.04362128465868",Road,"4,8",0,,
+run_id,active,day,time,alt_time,club_id,title,startpoint,google_map,coords,type,distance,fixed_route,route_link,notes
+0w,1,Wednesday,6:30 PM,,0,,Shaw's Tavern,https://goo.gl/maps/A5fwA2J39nKKVW4M8,"38.91531257905251, -77.01967456443468",Road,4,0,,
+1w,1,Monday,6:30 PM,,1,,Bikeshare Station - Smithsonian Metro,https://goo.gl/maps/a5ja7coRuQpMEw3H8,"38.888953545709654, -77.02869936442738",Road,"4,8",0,,
+2w,0,Thursday,6:30 PM,,1,,Bikeshare Station - Smithsonian Metro,https://goo.gl/maps/a5ja7coRuQpMEw3H8,"38.888953545709654, -77.02869936442738",Road,"4,8",0,,
+3w,1,Saturday,8:00 AM,9:00 AM,2,,Statue in center of Dupont Circle,https://goo.gl/maps/mQHLcYF7wKyLF1Mt5,"38.90974454736303, -77.04362128465868",Road,"4,8",0,,

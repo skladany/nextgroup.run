@@ -11,12 +11,17 @@ A running log of my architectural decisions, as I build out this app.
 - [ ] Extend endpoint to "repeat" runs if necessary to get to 10 runs
 - [ ] Merge in one-off runs
 
+## 2022-07-02
+
+- [x] Updating CSVs to have `run_id`
+- [x] Being to import monthly data
+
 ## 2022-06-30 ..again
 
 - Played with my pup, found a solution! We can do this without a DB! Here's how:
   - We still have the `weekly`, `monthly`, `yearly` and `singuler` CSV files
   - But in the repeating CSV, we add a `run_id` for each run
-  - Then, if there's a special run, or a weekly run is cancelled, we add it to the `singuler` file -- and refence that `run_id`
+  - Then, if there's a special run, or a weekly run is cancelled, we add it to the `singuler` file -- and reference that `run_id`
   - If, for a given `run_id` -- that also matches the `derived_time` in the singular file, i.e, there's a collision in the data -- then the `singular` data always wins out. It's the source of truth
 
 ## 2022-06-30

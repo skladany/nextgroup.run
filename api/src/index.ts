@@ -1,4 +1,5 @@
 import { Clubs, ClubsMap } from './types'
+import {} from './helpers/mappers'
 import { weekdayToDate } from './helpers/weekday-to-date'
 import express, { Express, Request, Response, NextFunction } from 'express'
 import dotenv from 'dotenv'
@@ -36,6 +37,7 @@ app.get('/runs', async (req: Request, res: Response) => {
   // Injest data.csv files
   const clubsCSV = `data/${city}/clubs.csv`
   const weeklyCSV = `data/${city}/weekly.csv`
+  const monthlyCSV = `data/${city}/monthly.csv`
 
   // Parse clubs data
   const clubs: Clubs[] = await csv().fromFile(clubsCSV)
@@ -60,6 +62,20 @@ app.get('/runs', async (req: Request, res: Response) => {
       fixed_route: item => toBoolean(item),
     },
   }).fromFile(weeklyCSV)
+
+  // Parse the monthly club data
+  const monthly = await csv({
+    colParser: {
+      active: item => toBoolean(item),
+      club: item => toClub(item),
+      weekly: item => toBoolean(item),
+      coords: item => toArray(item),
+      distance: item => toArray(item),
+      fixed_route: item => toBoolean(item),
+    },
+  }).fromFile(monthlyCSV)
+
+  console.log(monthly)
 
   // 1. Filter by active runs
   // 2. Add `next_run` data

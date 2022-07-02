@@ -1,4 +1,4 @@
-active,day_or_date,time,alt_time,club_id,repeating,cadence,repeats_on,title,startpoint,google_map,coords,type,distance,fixed_route,route_link,notes
-1,6/1/22,12:00 AM,,0,0,null,,Old Run That Already Happened,Shaw's Tavern,https://goo.gl/maps/A5fwA2J39nKKVW4M8,"38.91531257905251, -77.01967456443468",Road,4,0,,
-1,7/4/22,12:00 AM,,0,0,null,,Crazy Midnight Run,Shaw's Tavern,https://goo.gl/maps/A5fwA2J39nKKVW4M8,"38.91531257905251, -77.01967456443468",Road,4,0,,
-1,12/1/22,12:00 AM,,0,0,null,,New Run Too Far Away,Shaw's Tavern,https://goo.gl/maps/A5fwA2J39nKKVW4M8,"38.91531257905251, -77.01967456443468",Road,4,0,,
+run_id,active,day,time,alt_time,club_id,title,startpoint,google_map,coords,type,distance,fixed_route,route_link,notes
+0s,1,6/1/22,12:00 AM,,,Old Run That Already Happened,Shaw's Tavern,https://goo.gl/maps/A5fwA2J39nKKVW4M8,"38.91531257905251, -77.01967456443468",Road,4,0,,
+1s,1,7/4/22,12:00 AM,,,Crazy Midnight Run,Shaw's Tavern,https://goo.gl/maps/A5fwA2J39nKKVW4M8,"38.91531257905251, -77.01967456443468",Road,4,0,,
+2s,1,12/1/22,12:00 AM,,,New Run Too Far Away,Shaw's Tavern,https://goo.gl/maps/A5fwA2J39nKKVW4M8,"38.91531257905251, -77.01967456443468",Road,4,0,,
