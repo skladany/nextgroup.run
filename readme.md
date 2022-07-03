@@ -8,8 +8,16 @@ A running log of my architectural decisions, as I build out this app.
 
 # TODO
 
+- [ ] Fix endpoint properly calculate monthly `next_run` times
+
 - [ ] Extend endpoint to "repeat" runs if necessary to get to 10 runs
 - [ ] Merge in one-off runs
+
+## 2022-07-03
+
+- [x] Merged in monthly runs
+- [x] Fix endpoint to show `club` property again
+  - I had renamed that property to `club_id` so of course it broke. Not it's back to `club` and is a union type -- it can be both a `string` or a `Club`
 
 ## 2022-07-02
 

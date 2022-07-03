@@ -1,5 +1,4 @@
-import { Clubs, ClubsMap } from './types'
-import {} from './helpers/mappers'
+import { Club, ClubsMap, Run } from './types'
 import { weekdayToDate } from './helpers/weekday-to-date'
 import express, { Express, Request, Response, NextFunction } from 'express'
 import dotenv from 'dotenv'
@@ -34,17 +33,17 @@ app.get('/runs', async (req: Request, res: Response) => {
   // const page = req.query.page ?? 0
   // const date = req.query.page ?? Date.now()
 
-  // Injest data.csv files
+  // Ingest data.csv files
   const clubsCSV = `data/${city}/clubs.csv`
   const weeklyCSV = `data/${city}/weekly.csv`
   const monthlyCSV = `data/${city}/monthly.csv`
 
   // Parse clubs data
-  const clubs: Clubs[] = await csv().fromFile(clubsCSV)
+  const clubs: Club[] = await csv().fromFile(clubsCSV)
 
   // Create map of data
   const clubsData: ClubsMap = {}
-  clubs.forEach((data: Clubs) => (clubsData[data.id] = data as Clubs))
+  clubs.forEach((data: Club) => (clubsData[data.id] = data as Club))
 
   // Helpers methods to parse the data; Possibly move these to another func
   const toBoolean = (item: string) => !!parseInt(item)
@@ -52,7 +51,7 @@ app.get('/runs', async (req: Request, res: Response) => {
   const toClub = (id: string) => clubsData[parseInt(id)]
 
   // Parse the weekly club data
-  const weekly = await csv({
+  const weeklyRuns = await csv({
     colParser: {
       active: item => toBoolean(item),
       club: item => toClub(item),
@@ -64,7 +63,7 @@ app.get('/runs', async (req: Request, res: Response) => {
   }).fromFile(weeklyCSV)
 
   // Parse the monthly club data
-  const monthly = await csv({
+  const monthlyRuns = await csv({
     colParser: {
       active: item => toBoolean(item),
       club: item => toClub(item),
@@ -75,20 +74,30 @@ app.get('/runs', async (req: Request, res: Response) => {
     },
   }).fromFile(monthlyCSV)
 
-  console.log(monthly)
-
   // 1. Filter by active runs
   // 2. Add `next_run` data
-  // 3. Sort runs
-  const nextRun: object = weekly
+  const nextWeeklyRuns: Run[] = weeklyRuns
     .filter(run => run.active === true)
     .map(run => {
       run.next_run = weekdayToDate({ weekday: run.day, time: run.time })
       return run
     })
-    .sort((a, b) => a.next_run - b.next_run)
 
-  res.send(nextRun)
+  // 1. Filter by active runs
+  // 2. Add `next_run` date
+  const nextMonthlyRuns: Run[] = monthlyRuns
+    .filter(run => run.active === true)
+    .map(run => {
+      run.next_run = weekdayToDate({ weekday: run.day, time: run.time })
+      return run
+    })
+
+  // Merge & Sort runs
+  const nextRuns: Run[] = [...nextWeeklyRuns, ...nextMonthlyRuns].sort(
+    (a, b) => a.next_run.getTime() - b.next_run.getTime()
+  )
+
+  res.send(nextRuns)
 })
 
 app.listen(port, () => {

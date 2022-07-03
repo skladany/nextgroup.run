@@ -9,7 +9,7 @@ interface StringToNumberMap {
   [index: string]: number
 }
 
-type Clubs = {
+type Club = {
   id: number
   name: string
   abbreviation: string
@@ -21,7 +21,26 @@ type Clubs = {
 }
 
 interface ClubsMap {
-  [index: number]: Clubs
+  [index: number]: Club
 }
 
-export { WeekdayToDateSettings, StringToNumberMap, Clubs, ClubsMap }
+type Run = {
+  run_id: string
+  active: Boolean
+  day: string
+  time: string
+  alt_time: string
+  club: string | Club
+  title: string
+  startpoint: string
+  google_map: string
+  coords: number[]
+  type: string
+  distance: number[]
+  fixed_route: Boolean
+  route_link: string
+  notes: string
+  next_run: Date
+}
+
+export { WeekdayToDateSettings, StringToNumberMap, Club, ClubsMap, Run }
