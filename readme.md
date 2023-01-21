@@ -8,10 +8,20 @@ A running log of my architectural decisions, as I build out this app.
 
 # TODO
 
+- [ ] Finish moving `mappers` and typing properly
 - [ ] Fix endpoint properly calculate monthly `next_run` times
-
 - [ ] Extend endpoint to "repeat" runs if necessary to get to 10 runs
 - [ ] Merge in one-off runs
+
+## 2023-01-20
+
+- [x] 🕸️ Dusting off the cobwebs. I don't want to be one of those devs who buy a domain name then never finish the project...
+- [x] Figuring out where I left things off
+
+## 2022-07-20
+
+- You break the chain and suddenly two weeks go by with no updates. Don't break the chain!
+- [x] WIP - Modularizing components
 
 ## 2022-07-03
 
