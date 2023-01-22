@@ -2,7 +2,9 @@ import { Club, ClubsMap } from '../types'
 import csv from 'csvtojson'
 
 export default async function Mappers(city: string) {
-  const clubsCSV = `../data/${city}/clubs.csv`
+  console.log({ city })
+  console.log(process.cwd())
+  const clubsCSV = `./data/${city}/clubs.csv`
 
   // Parse clubs data
   const clubs: Club[] = await csv().fromFile(clubsCSV)

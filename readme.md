@@ -8,10 +8,16 @@ A running log of my architectural decisions, as I build out this app.
 
 # TODO
 
-- [ ] Finish moving `mappers` and typing properly
-- [ ] Fix endpoint properly calculate monthly `next_run` times
+- [ ] Change data model to follow `recurring_pattern` model instead, merging `weekly` & `monthly` csv into one
 - [ ] Extend endpoint to "repeat" runs if necessary to get to 10 runs
 - [ ] Merge in one-off runs
+
+## 2023-01-22
+
+- [x] Finish moving `mappers` and typing properly
+- Rethinking how I deal with reoccuring events and one-off events: https://www.vertabelo.com/blog/again-and-again-managing-recurring-events-in-a-data-model/
+  - Following this data model would allow me to consolidate reoccuring events into one csv instead
+  - This would require a bit of refactor, but result in a more future-proof implemenation
 
 ## 2023-01-20
 

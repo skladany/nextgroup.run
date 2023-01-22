@@ -40,58 +40,56 @@ app.get('/runs', async (req: Request, res: Response) => {
   const weeklyCSV = `data/${city}/weekly.csv`
   const monthlyCSV = `data/${city}/monthly.csv`
 
-  console.log(Mappers(city))
+  const { toBoolean, toArray, toClub } = await Mappers(city)
 
-  // const toBoolean = await Mappers.toBoolean(city)
+  // Parse the weekly club data
+  const weeklyRuns = await csv({
+    colParser: {
+      active: item => toBoolean(item),
+      club: item => toClub(item),
+      weekly: item => toBoolean(item),
+      coords: item => toArray(item),
+      distance: item => toArray(item),
+      fixed_route: item => toBoolean(item),
+    },
+  }).fromFile(weeklyCSV)
 
-  // // Parse the weekly club data
-  // const weeklyRuns = await csv({
-  //   colParser: {
-  //     active: item => toBoolean(item),
-  //     club: item => toClub(item),
-  //     weekly: item => toBoolean(item),
-  //     coords: item => toArray(item),
-  //     distance: item => toArray(item),
-  //     fixed_route: item => toBoolean(item),
-  //   },
-  // }).fromFile(weeklyCSV)
+  // Parse the monthly club data
+  const monthlyRuns = await csv({
+    colParser: {
+      active: item => toBoolean(item),
+      club: item => toClub(item),
+      weekly: item => toBoolean(item),
+      coords: item => toArray(item),
+      distance: item => toArray(item),
+      fixed_route: item => toBoolean(item),
+    },
+  }).fromFile(monthlyCSV)
 
-  // // Parse the monthly club data
-  // const monthlyRuns = await csv({
-  //   colParser: {
-  //     active: item => toBoolean(item),
-  //     club: item => toClub(item),
-  //     weekly: item => toBoolean(item),
-  //     coords: item => toArray(item),
-  //     distance: item => toArray(item),
-  //     fixed_route: item => toBoolean(item),
-  //   },
-  // }).fromFile(monthlyCSV)
+  // 1. Filter by active runs
+  // 2. Add `next_run` data
+  const nextWeeklyRuns: Run[] = weeklyRuns
+    .filter(run => run.active === true)
+    .map(run => {
+      run.next_run = weekdayToDate({ weekday: run.day, time: run.time })
+      return run
+    })
 
-  // // 1. Filter by active runs
-  // // 2. Add `next_run` data
-  // const nextWeeklyRuns: Run[] = weeklyRuns
-  //   .filter(run => run.active === true)
-  //   .map(run => {
-  //     run.next_run = weekdayToDate({ weekday: run.day, time: run.time })
-  //     return run
-  //   })
+  // 1. Filter by active runs
+  // 2. Add `next_run` date
+  const nextMonthlyRuns: Run[] = monthlyRuns
+    .filter(run => run.active === true)
+    .map(run => {
+      run.next_run = monthlyToDate({ weekday: run.day, time: run.time })
+      return run
+    })
 
-  // // 1. Filter by active runs
-  // // 2. Add `next_run` date
-  // const nextMonthlyRuns: Run[] = monthlyRuns
-  //   .filter(run => run.active === true)
-  //   .map(run => {
-  //     run.next_run = monthlyToDate({ weekday: run.day, time: run.time })
-  //     return run
-  //   })
+  // Merge & Sort runs
+  const nextRuns: Run[] = [...nextWeeklyRuns, ...nextMonthlyRuns].sort(
+    (a, b) => a.next_run.getTime() - b.next_run.getTime()
+  )
 
-  // // Merge & Sort runs
-  // const nextRuns: Run[] = [...nextWeeklyRuns, ...nextMonthlyRuns].sort(
-  //   (a, b) => a.next_run.getTime() - b.next_run.getTime()
-  // )
-
-  // res.send(nextRuns)
+  res.send(nextRuns)
 })
 
 app.listen(port, () => {
